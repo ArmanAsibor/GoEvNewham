@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoEVNewham</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header id="nav-bar">
+        <a id="logo" href="index.html">GoEVNewham</a>
+    
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="why-go-electric.html">Why go Electric</a></li>
+                <li><a href="where-to-charge.html">Where to charge</a></li>
+                <li><a href="sign-up.html">Newsletter</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="intro">
+        <div id="both-headings">
+            <h2 class="fade-in" id="big-heading">Let's make Newham <span id="greener">greener</span></h2>
+            <h3 class="fade-in" id="small-heading">Switch to electric and drive the change!</h3>
+        </div>
+    </section>
+
+    <section class="tagline">
+        <div class="tagline-box">
+            <h3>Fast Forward to a Greener Newham</h3>
+            <p>"The transition to EVs is a crucial step towards achieving the UK’s net zero target.
+                As announced by the Prime Minister on 20 September 2023, the sale of new petrol and diesel cars will be phased out by 2035.<br>
+                This proportionate approach will support manufacturers and families in making the switch to electric,
+                providing flexibility while also helping grow the economy."<br>  SOURCE : WWW.GOV.UK</p>
+        </div>
+    </section>
+
+    <section class="facts">
+        <div class="row">
+            <div class="fact-box">"Switching to an electric car can cut your carbon emissions by up to 50% compared to petrol cars."
+
+                                (Source: Energy Saving Trust UK)</div>
+            <div class="photo-box"><img src="picture2.jpg" alt="an EV charging point"></div>
+        </div>
+        <div class="row">
+            <div class="photo-box"><img src="picture3 (1).jpg" alt="EV related photo"></div>
+            <div class="fact-box">By switching to an electric vehicle you can save money on fuel costs,
+                                reduce harmful vehicle emissions and help clean up London's air.</div>
+        </div>
+    </section>
+
+    <section class="news">
+        <h3><button>News</button></h3>
+    </section>
+
+    <section class="slideshow">
+        <div class="slideshow-container">
+    
+            <div class="slide">
+                <a href="https://www.newham.gov.uk/transport-streets/electric-vehicle-charging-points" target="_blank">
+                    <img src="picture2.jpg" alt="Slide 1: EV Charging Point">
+                </a>
+                <p class="slide-caption">
+                    🚗 Over 80 new fast EV chargers installed across Newham! Click to learn more.
+                </p>
+            </div>
+    
+            <div class="slide">
+                <a href="https://www.newham.gov.uk/news/article/802/new-funding-agreement-secures-400-electric-vehicle-charging-points-for-newham" target="_blank">
+                    <img src="picture3.jpg" alt="Slide 2: Funding for Charging Points">
+                </a>
+                <p class="slide-caption">
+                    💷 £2.6M secured by Newham Council and Uber to install 400 more charging points!
+                </p>
+            </div>
+    
+            <div class="slide">
+                <a href="https://www.newham.gov.uk/public-health-safety/energy/3" target="_blank">
+                    <img src="picture4.jpg" alt="Slide 3: Clean Air and Sustainability">
+                </a>
+                <p class="slide-caption">
+                    🌍 Newham is committed to cleaner air and sustainability—ranked top 5 for EV access!
+                </p>
+            </div>
+    
+            <button onclick="prevSlide()">&#10094;</button>
+            <button onclick="nextSlide()">&#10095;</button>
+    
+        </div>
+    </section>
+    
+    
+    
+    <footer class="footers">
+        <p>&copy; 2025 GoEVNewham. All rights reserved.</p>
+    </footer>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll(".slide");
+    
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? "block" : "none";
+            });
+        }
+    
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+    
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+    
+        // Initialize the first slide
+        showSlide(currentSlide);
+
+            const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            const isVisible = navMenu.style.display === 'flex';
+            navMenu.style.display = isVisible ? 'none' : 'flex';
+        });
+
+        // Optional: close menu on outside click (mobile only)
+        document.addEventListener('click', function(event) {
+            if (!navMenu.contains(event.target) && !menuToggle.contains(event.target) && window.innerWidth <= 768) {
+                navMenu.style.display = 'none';
+            }
+    });
+    </script>
+</body>
+</html>

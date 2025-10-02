@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - GoEVNewham</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class= "sign-up-page">
+
+<header id="nav-bar">
+    <a id="logo" href="index.html">GoEVNewham</a>
+    <nav id="nav-menu">
+        <ul>
+            <li><a href="why-go-electric.html">Why go Electric</a></li>
+            <li><a href="where-to-charge.html">Where to charge</a></li>
+            <li><a href="sign-up.html">Newsletter</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="newsletter-section">
+    <h2>Stay Connected</h2>
+    <p>Sign up for our newsletter and stay updated on EV tips, green initiatives, and Newham’s electric future!</p>
+
+    <form id="newsletter-form" class="newsletter-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <button type="submit">Subscribe</button>
+    </form>
+    <div id="popup-message" class="popup-message hidden"></div>
+
+    <p class="privacy-note">We respect your privacy. Unsubscribe at any time.</p>
+</section>
+
+<footer class="footers">
+  <p>&copy; 2025 GoEVNewham. All rights reserved.</p>
+</footer>
+
+<script>
+    const form = document.getElementById('newsletter-form');
+    const popup = document.getElementById('popup-message');
+  
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+  
+      const name = form.elements['name'].value.trim();
+      const email = form.elements['email'].value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+      if (!name || !email) {
+        showPopup("Please fill in both name and email.", "error");
+      } else if (!emailPattern.test(email)) {
+        showPopup("❌ Invalid email address.", "error");
+      } else {
+        showPopup(`✅ Thanks, ${name}! You’ve successfully subscribed.`, "success");
+        form.reset();
+      }
+    });
+  
+    function showPopup(message, type) {
+      popup.textContent = message;
+      popup.className = `popup-message show ${type}`;
+  
+      setTimeout(() => {
+        popup.className = 'popup-message hidden';
+      }, 3000);
+    }
+  </script>
+  
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - GoEVNewham</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="contact-page">
+    <header id="nav-bar">
+        <a id="logo" href="index.html">GoEVNewham</a>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="why-go-electric.html">Why go Electric</a></li>
+                <li><a href="where-to-charge.html">Where to charge</a></li>
+                <li><a href="sign-up.html">Newsletter</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li><a href="about-us.html">About Us</a></li>   
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contact-container">
+        <h2>Contact and Support</h2>
+
+        <div class="faq-search">
+            <label for="faq">Search our FAQs:</label>
+            <input type="text" id="faq" name="faq" placeholder="Type your question...">
+            <ul id="faq-suggestions" class="faq-suggestions hidden"></ul>
+            <p class="tip">To make the help more efficient and less time consuming</p>
+        </div>
+
+        <div class="support-btns">
+            <button onclick="alert('Our support team is ready to help!')">Talk to our customer service team</button>
+        </div>
+
+        <div class="contact-actions">
+            <button onclick="showEmailPopup()">Email us</button>
+            <button onclick="showCallPopup()">Call us</button>
+        </div>
+
+        <div id="popup-overlay" class="popup-overlay hidden">
+            <div class="popup-box">
+                <span class="close-btn" onclick="hidePopup()">×</span>
+                <p id="popup-content"></p>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer class="footers">
+        <p>&copy; 2025 GoEVNewham. All rights reserved.</p>
+    </footer>
+
+    <script>
+
+        const popupOverlay = document.getElementById("popup-overlay");
+        const popupContent = document.getElementById("popup-content");
+
+        function showEmailPopup() {
+            popupContent.textContent = "📧 Email us at:\nsupport@goevnewham.co.uk\nWe’ll get back to you within 24 hours.";
+            popupOverlay.classList.remove("hidden");
+        }
+
+        function showCallPopup() {
+            popupContent.textContent = "📞 Call us at:\nHome: 0800 123 4567\nBusiness: 0800 765 4321\nHours: Mon–Fri, 9AM–5PM";
+            popupOverlay.classList.remove("hidden");
+        }
+
+        function hidePopup() {
+            popupOverlay.classList.add("hidden");
+        }
+
+        const faqInput = document.getElementById('faq');
+        const suggestionBox = document.getElementById('faq-suggestions');
+
+        const faqLinks = [
+            { keyword: "charge", text: "Where to charge", url: "where-to-charge.html" },
+            { keyword: "electric", text: "Why go Electric", url: "why-go-electric.html" },
+            { keyword: "about", text: "About Us", url: "about-us.html" },
+            { keyword: "newsletter", text: "Join the Newsletter", url: "sign-up.html" }
+        ];
+
+        faqInput.addEventListener("input", () => {
+            const input = faqInput.value.toLowerCase();
+            suggestionBox.innerHTML = "";
+
+            if (input === "") {
+                suggestionBox.classList.add("hidden");
+                return;
+            }
+
+                const matches = faqLinks.filter(item => item.keyword.includes(input) || item.text.toLowerCase().includes(input));
+
+                if (matches.length > 0) {
+                    matches.forEach(item => {
+                        const li = document.createElement("li");
+                        li.innerHTML = `<a href="${item.url}">${item.text}</a>`;
+                        suggestionBox.appendChild(li);
+                    });
+                    suggestionBox.classList.remove("hidden");
+                } else {
+                    suggestionBox.classList.add("hidden");
+                }
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!faqInput.contains(e.target) && !suggestionBox.contains(e.target)) {
+                    suggestionBox.classList.add("hidden");
+                }
+            });
+
+    </script>
+</body>
+</html>
